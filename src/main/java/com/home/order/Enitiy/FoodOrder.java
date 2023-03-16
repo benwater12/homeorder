@@ -24,6 +24,8 @@ private long order_id;
  @Column
  private long item_ID;
  @Column
+ private long merchant_ID;
+ @Column
  private java.util.Date order_date;
 
  //text field
