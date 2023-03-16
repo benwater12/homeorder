@@ -4,5 +4,6 @@ I planned to use a template HTML ans CSS, since the main cause of this is to get
 
 So far I finished planning the API, and got a Maven running.
 
+For the record, I'm Benson or benwater.
 
 [Notion planning](https://slash-ballcap-a0b.notion.site/4b653c265df14322af773ff5254bcda4)
