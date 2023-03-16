@@ -20,7 +20,7 @@ public class Item {
 private long item_id;
 @Column
 @Lob
- private String name;
+ private String item_name;
  @Column
  private int price;
  @Column

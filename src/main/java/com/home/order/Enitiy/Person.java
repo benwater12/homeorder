@@ -20,7 +20,7 @@ public class Person {
 private long person_id;
 @Column
 @Lob
- private String name;
+ private String person_name;
  //text field
  @Column
  private int balance; 

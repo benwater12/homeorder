@@ -1,4 +1,7 @@
 package com.home.order.repo;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.home.order.Enitiy.FoodOrder;
@@ -6,5 +9,6 @@ import com.home.order.Enitiy.FoodOrder;
 // This will be AUTO IMPLEMENTED by Spring into a Bean called repositoryOrder
 // CRUD refers Create, Read, Update, Delete
 public interface RepositoryOrder extends CrudRepository<FoodOrder,Integer> {
-    
+    @Query(value = "SELECT a FROM FoodOrder a WHERE a.person_ID = :Person_ID")
+    public List<FoodOrder> FindByPerson_ID(long Person_ID);
 }

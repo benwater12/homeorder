@@ -1,4 +1,6 @@
 package com.home.order.Enitiy;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +22,11 @@ public class Merchant {
 private long merchant_id;
 @Column
 @Lob
- private String name;
+ private String merchant_name;
  //text field
  @Column
  @Lob
  private String location; 
+ @Column
+ private boolean inBusiness;
 }
