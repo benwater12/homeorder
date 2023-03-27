@@ -18,9 +18,10 @@ import lombok.Setter;
 
 public class Merchant {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.SEQUENCE)
+@Column(name = "MERCHANT_ID")
 private long merchant_id;
-@Column
+@Column(unique=true)
 @Lob
  private String merchant_name;
  //text field
@@ -29,4 +30,11 @@ private long merchant_id;
  private String location; 
  @Column
  private boolean inBusiness;
+
+public Merchant(String  merchant_name, String location, boolean inBusiness){
+    this.inBusiness=inBusiness;
+    this.location=location;
+    this.merchant_name=merchant_name;
+
+}
 }

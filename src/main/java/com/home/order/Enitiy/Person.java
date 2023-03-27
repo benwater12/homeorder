@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +17,10 @@ import lombok.Setter;
 @Setter
 public class Person {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.SEQUENCE)
+@Column(name = "PERSON_ID")
 private long person_id;
-@Column
+@Column(unique=true)
 @Lob
  private String person_name;
  //text field
