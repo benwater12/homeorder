@@ -1,5 +1,4 @@
 package com.home.order.Enitiy;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -35,9 +34,9 @@ private long merchant_id;
  private boolean inBusiness;
  
  @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL) 
- private List<FoodOrder> Orders= new ArrayList<FoodOrder>();
+ private transient List<FoodOrder> Orders;
  @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
- private List<Item> Items= new ArrayList<Item>();
+ private transient  List<Item> Items;
 
 public Merchant(){
 }

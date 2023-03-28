@@ -31,5 +31,5 @@ private long person_id;
  @Column
  private int balance; 
  @OneToMany(mappedBy = "person", cascade = CascadeType.ALL) 
- private List<FoodOrder> Orders= new ArrayList<FoodOrder>();
+ private transient List<FoodOrder> Orders;
 }
