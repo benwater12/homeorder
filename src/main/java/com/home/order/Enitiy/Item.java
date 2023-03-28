@@ -34,13 +34,13 @@ private long item_id;
  private int price;
 @ManyToOne
 @JoinColumn(name = "MERCHANT_ID")
- private Merchant merchant;
+ private  Merchant merchant;
  //text field
  @Column
  @Lob
  private String item_specific; 
  @OneToMany(mappedBy = "item", cascade = CascadeType.ALL) 
- private List<FoodOrder> Orders= new ArrayList<FoodOrder>();
+ private transient List<FoodOrder> Orders;
 
  
  public Item()

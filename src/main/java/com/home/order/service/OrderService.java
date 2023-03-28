@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.home.order.Enitiy.FoodOrder;
 import com.home.order.repo.RepositoryItem;
 import com.home.order.repo.RepositoryMerchant;
@@ -12,7 +14,7 @@ import com.home.order.repo.RepositoryOrder;
 import com.home.order.repo.RepositoryPerson;
 
 import lombok.Getter;
-
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -29,6 +31,9 @@ public class OrderService {
     private RepositoryPerson repositoryPerson;  
 
     public DelegateOrdersum getOrderHistorybyperson_name(String person_name){
+        // System.out.println(repositoryPerson.FindByPerson_name(person_name).get(0).getPerson_id());
+        // System.out.println("ABC================");
+        // System.out.println(repositoryOrder.FindByPerson_ID(repositoryPerson.FindByPerson_name(person_name).get(0).getPerson_id()));
         List<FoodOrder> allorder= repositoryOrder.FindByPerson_ID(repositoryPerson.FindByPerson_name(person_name).get(0).getPerson_id());
         int sum =repositoryOrder.FindOrderSumByPerson_ID(repositoryPerson.FindByPerson_name(person_name).get(0).getPerson_id());
         // int sum = ;
@@ -47,15 +52,13 @@ public class OrderService {
         repositoryOrder.save(n);
     }
     @Getter
+    @Setter
     public class DelegateOrdersum{
     List<FoodOrder> allorder; 
     int ordersum;
     public DelegateOrdersum( List<FoodOrder> allorder, int ordersum) {
         this.allorder = allorder;
         this.ordersum = ordersum;
-    }
-    public String ToString(){
-        return Integer.toString(ordersum)+" "+allorder.get(0).getPerson().getPerson_id();
     }
     
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.home.order.Enitiy.FoodOrder;
 import com.home.order.repo.*;
 import com.home.order.service.OrderService;
@@ -83,7 +85,9 @@ public class OrderController {
         HttpStatus.NOT_FOUND, "Input data not match current database."
       );
     }
-    return response.ToString();
+    Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();
+    String prettyJsonString = gsonPretty.toJson(response.getAllorder());
+    return prettyJsonString;
 
   }
 }
