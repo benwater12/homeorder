@@ -1,11 +1,16 @@
 package com.home.order.Enitiy;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -26,4 +31,6 @@ private long person_id;
  //text field
  @Column
  private int balance; 
+ @OneToMany(mappedBy = "person", cascade = CascadeType.ALL) 
+ private List<FoodOrder> Orders= new ArrayList<FoodOrder>();
 }
