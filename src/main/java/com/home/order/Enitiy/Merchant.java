@@ -33,15 +33,12 @@ private long merchant_id;
  private String location; 
  @Column
  private boolean inBusiness;
+ 
  @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL) 
  private List<FoodOrder> Orders= new ArrayList<FoodOrder>();
  @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
  private List<Item> Items= new ArrayList<Item>();
 
-public Merchant(String  merchant_name, String location, boolean inBusiness){
-    this.inBusiness=inBusiness;
-    this.location=location;
-    this.merchant_name=merchant_name;
-
+public Merchant(){
 }
 }

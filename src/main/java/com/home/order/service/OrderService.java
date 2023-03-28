@@ -12,8 +12,7 @@ import com.home.order.repo.RepositoryOrder;
 import com.home.order.repo.RepositoryPerson;
 
 import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+
 
 import java.util.Date;
 
@@ -40,9 +39,9 @@ public class OrderService {
         FoodOrder n = new FoodOrder();
         //set now as date
         n.setOrder_date(new Date());
-        n.setItem_id(repositoryItem.FindByItem_name(Item_name).get(0).getItem_id());
-        n.setPerson_id(repositoryPerson.FindByPerson_name(name).get(0).getPerson_id());
-        n.setMerchant_id(repositoryMerchant.FindByMerchant_name(Merchant_name).get(0).getMerchant_id());
+        n.setItem(repositoryItem.FindByItem_name(Item_name).get(0));
+        n.setPerson(repositoryPerson.FindByPerson_name(name).get(0));
+        n.setMerchant(repositoryMerchant.FindByMerchant_name(Merchant_name).get(0));
         n.setOrder_specific(Order_specific);
         n.setOrder_cost(Order_cost);
         repositoryOrder.save(n);
@@ -56,7 +55,7 @@ public class OrderService {
         this.ordersum = ordersum;
     }
     public String ToString(){
-        return Integer.toString(ordersum)+" "+allorder.get(0).getPerson_id();
+        return Integer.toString(ordersum)+" "+allorder.get(0).getPerson().getPerson_id();
     }
     
 }

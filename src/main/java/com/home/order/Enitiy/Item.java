@@ -43,11 +43,8 @@ private long item_id;
  private List<FoodOrder> Orders= new ArrayList<FoodOrder>();
 
  
- public Item(String item_name, int price, String item_specific,Merchant merchant)
+ public Item()
  {
-    this.item_name=item_name;
-    this.merchant=merchant;
-    this.item_specific=item_specific;
-    this.price=price;
+
  }
 }

@@ -8,17 +8,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.home.order.Enitiy.Item;
 import com.home.order.Enitiy.Merchant;
-import com.home.order.repo.*;
+import com.home.order.repo.RepositoryItem;
 
 @Controller
 @RequestMapping("/item")
 public class ItemController {
  @Autowired
- private RepositoryItem repositoryItem;
+ RepositoryItem repositoryItem;
  @GetMapping(path="/addtest") 
  public @ResponseBody String addNewItemtest () {
-   // @ResponseBody means the returned String is the response, not a view name
-   // @RequestParam means it is a parameter from the GET or POST request
-   return "Saved";
+  Item item = new Item();
+  item.setItem_id(1);
+  item.setItem_name("StinkyTofu");
+  item.setItem_specific("Spicy");
+  Merchant merchant=new Merchant();
+  merchant.setInBusiness(true);
+  merchant.setMerchant_name("BOAI");
+  merchant.setMerchant_id(2);
+  item.setMerchant(merchant);
+  item.setPrice(50);
+  repositoryItem.save(item);
+   return "Saved Item Added";
  }
 }

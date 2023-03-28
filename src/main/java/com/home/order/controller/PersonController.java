@@ -19,7 +19,7 @@ public class PersonController {
       // @ResponseBody means the returned String is the response, not a view name
       // @RequestParam means it is a parameter from the GET or POST request
       Person n = new Person();
-      n.setPerson(0);
+      n.setPerson_id(1);
       //set now as date
       n.setBalance(50);
       n.setPerson_name("Benson");

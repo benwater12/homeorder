@@ -27,17 +27,23 @@ public class OrderController {
     @Autowired
      private RepositoryOrder repositoryOrder;
      @Autowired
+     private RepositoryItem repositoryItem;
+     @Autowired
+     private RepositoryPerson repositoryPerson;
+     @Autowired
+     private RepositoryMerchant repositoryMerchant;
+     @Autowired
      private OrderService orderService;
 
   @GetMapping(path="/addtest") 
   public @ResponseBody String addNewOrdertest () {
     FoodOrder foodOrder=new FoodOrder(); 
     foodOrder.setFood_order_id(0);
-    foodOrder.setItem_id(123);
-    foodOrder.setMerchant_id(123);
+    foodOrder.setItem(repositoryItem.FindByItem_name("StinkyTofu").get(0));
+    foodOrder.setMerchant(repositoryMerchant.FindByMerchant_name("BOAI").get(0));
     foodOrder.setOrder_cost(200);
     foodOrder.setOrder_specific("1223");
-    foodOrder.setPerson_id(0);
+    foodOrder.setPerson(repositoryPerson.FindByPerson_name("Benson").get(0));
     foodOrder.setOrder_date(new Date());
     repositoryOrder.save(foodOrder);
     return "Saved";
