@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.home.order.Enitiy.FoodOrder;
 import com.home.order.repo.RepositoryItem;
 import com.home.order.repo.RepositoryMerchant;
@@ -30,7 +27,7 @@ public class OrderService {
     @Autowired
     private RepositoryPerson repositoryPerson;  
 
-    public DelegateOrdersum getOrderHistorybyperson_name(String person_name){
+    public DelegateOrdersum getOrderHistorybyperson_name(String person_name)throws IndexOutOfBoundsException{
         // System.out.println(repositoryPerson.FindByPerson_name(person_name).get(0).getPerson_id());
         // System.out.println("ABC================");
         // System.out.println(repositoryOrder.FindByPerson_ID(repositoryPerson.FindByPerson_name(person_name).get(0).getPerson_id()));
@@ -40,7 +37,7 @@ public class OrderService {
         return new DelegateOrdersum(allorder,sum);
         }
 
-    public void setOrder(String name,String Item_name,String Merchant_name,String Order_specific,int Order_cost){
+    public void setOrder(String name,String Item_name,String Merchant_name,String Order_specific,int Order_cost)throws IndexOutOfBoundsException{
         FoodOrder n = new FoodOrder();
         //set now as date
         n.setOrder_date(new Date());

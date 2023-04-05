@@ -6,13 +6,13 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.google.gson.Gson;
@@ -53,8 +53,7 @@ public class OrderController {
 
   
   @PostMapping(path="/{name}") 
-  @ResponseStatus(HttpStatus.OK)
-  public @ResponseBody String addNewOrder (@PathVariable String name,String Item_name,String Merchant_name,String Order_specific,int Order_cost) {
+  public  ResponseEntity<String> addNewOrder (@PathVariable String name,String Item_name,String Merchant_name,String Order_specific,int Order_cost) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
     FoodOrder n = new FoodOrder();
@@ -66,28 +65,24 @@ public class OrderController {
         orderService.setOrder(name, Item_name, Merchant_name, Order_specific, Order_cost);
     }
     catch(IndexOutOfBoundsException a){
-      throw new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "Input data not match current database."
-      );
+      return new ResponseEntity<String>("Input data not match current database.", HttpStatus.NOT_FOUND);
     }
-    return "order_placed";
+    return  new ResponseEntity<String>("order_placed",HttpStatus.OK);
   }
 
   @GetMapping(path="/{name}") 
-  public @ResponseBody String getAllOrder(@PathVariable String name) {
+  public ResponseEntity<String> getAllOrder(@PathVariable String name) {
 
     DelegateOrdersum response;
     try{
       response=orderService.getOrderHistorybyperson_name(name);
     }
     catch(IndexOutOfBoundsException a){
-      throw new ResponseStatusException(
-        HttpStatus.NOT_FOUND, "Input data not match current database."
-      );
+      return new ResponseEntity<String>("Input data not match current database.", HttpStatus.NOT_FOUND);
     }
     Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();
     String prettyJsonString = gsonPretty.toJson(response.getAllorder());
-    return prettyJsonString;
+    return new ResponseEntity<String>(prettyJsonString, HttpStatus.OK);
 
   }
 }
