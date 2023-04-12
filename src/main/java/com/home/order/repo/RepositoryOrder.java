@@ -13,5 +13,5 @@ public interface RepositoryOrder extends CrudRepository<FoodOrder,Integer> {
     public List<FoodOrder> FindByPerson_ID(long Person_ID);
     @Query(value = "SELECT SUM(a.order_cost) FROM FoodOrder a WHERE a.person.person_id = :Person_ID")
     public int FindOrderSumByPerson_ID(long Person_ID);
-
+    
 }

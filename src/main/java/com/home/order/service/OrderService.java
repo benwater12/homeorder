@@ -37,7 +37,7 @@ public class OrderService {
         return new DelegateOrdersum(allorder,sum);
         }
 
-    public void setOrder(String name,String Item_name,String Merchant_name,String Order_specific,int Order_cost)throws IndexOutOfBoundsException{
+    public FoodOrder setOrder(String name,String Item_name,String Merchant_name,String Order_specific,int Order_cost)throws IndexOutOfBoundsException{
         FoodOrder n = new FoodOrder();
         //set now as date
         n.setOrder_date(new Date());
@@ -46,7 +46,7 @@ public class OrderService {
         n.setMerchant(repositoryMerchant.FindByMerchant_name(Merchant_name).get(0));
         n.setOrder_specific(Order_specific);
         n.setOrder_cost(Order_cost);
-        repositoryOrder.save(n);
+        return repositoryOrder.save(n);
     }
     @Getter
     @Setter

@@ -11,8 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Entity
 @Table
@@ -31,4 +34,5 @@ private long person_id;
  private int balance; 
  @OneToMany(mappedBy = "person", cascade = CascadeType.ALL) 
  private transient List<FoodOrder> Orders;
+
 }

@@ -20,7 +20,6 @@ public class PersonController {
       // @RequestParam means it is a parameter from the GET or POST request
       Person n = new Person();
       n.setPerson_id(1);
-      //set now as date
       n.setBalance(50);
       n.setPerson_name("Benson");
       repositoryPerson.save(n);

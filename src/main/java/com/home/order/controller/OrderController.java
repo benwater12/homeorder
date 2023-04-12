@@ -54,12 +54,7 @@ public class OrderController {
   
   @PostMapping(path="/{name}") 
   public  ResponseEntity<String> addNewOrder (@PathVariable String name,String Item_name,String Merchant_name,String Order_specific,int Order_cost) {
-    // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
     FoodOrder n = new FoodOrder();
-    
-    
-    //set now as date
     n.setOrder_date(new Date());
     try{
         orderService.setOrder(name, Item_name, Merchant_name, Order_specific, Order_cost);
